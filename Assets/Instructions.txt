@@ -1,0 +1,76 @@
+Welcome to the Senior Dev Test :)
+
+In this project we want you to create the proof of concept of a hypothetical game. This means we have a grand vision of what the game will be in the future, but for now, we only need the bare minimum to see the fun of it.
+
+What we want to have for the proof of concept is a scene where the combat part of the game will take place.
+The game should ultimately be a turn based PvP game, but for the proof of concept consider a local multiplayer in the likes of pass-n-play where one player places their actions first, pass along the phone to the other player which places their actions and then the game executes both actions.
+
+Game Rules:
+- Each player has 2 heroes. 
+- Each hero can only execute 1 action per turn.
+- Heroes have 3 possible actions: move, attack, and use a special ability.
+- The game will execute actions simultaneously for both players following the order:
+	- Movement
+	- Special Attack
+	- Attack
+- Each turn happens in following order:
+	- Both players will first define what each hero will do on their turn (move, attack or use special).
+	- Then the game will move any heroes that was assigned a move action.
+	- Then the game will execute the special abilities for heroes that selected special ability.
+	- Then the game will execute attacks for the heroes that didn't move and didn't execute a special ability.
+	- Finally the game will evaluate which heroes are dead and remove them from the game.
+- The game ends when any player is without heroes.
+
+Actions:
+	- Movement:
+		All heroes movement is physics based and uses a slingshot mechanic to define the velocity
+	- Attack:
+		There are 2 possible types of attack:
+		- Melee attack for close combat
+		- Ranged attack with a projectile		
+	- Special Attack:
+		There are 3 possible:
+		- Heal friendly unit in range
+		- Pull opponents closer 
+		- Push opponents away
+
+Characters:
+	Otto:
+	- Can pull opponents
+	- Melee attack
+
+	Clay:
+	- No special abilities
+	- Melee attack
+
+	Alice:
+	- Can heal friendly units
+	- Ranged attack
+
+	Gretchen:
+	- Can push opponents
+	- Ranged attack
+	
+
+The test shouldn't take longer than 8 hours, but you are free to use more time if you want. 
+We just ask you to inform us how many hours were put into the test.
+
+We included in the project:
+	- Assets for the heroes including their animations
+	- Assets for the combat scene
+	- Basic UI for health tracking
+	- Addressables package is included
+	- TextMeshPro Essentials
+	- Unity Project is setup in a basic way using URP with Unity 2020.3.0f1
+
+We will focus our evaluation in the code quality, scalability, flexibility and performance. 
+We expect you to implement feedback to the player when necessary.
+Any polish in the game visuals is nice but not really required.
+
+When you are done, please send us your source code (via GitHub or any other online repository) so that we can make a code review.
+Please also attach a README.md document in which you'll mention
+    - The time it took you to perform the exercise
+    - The parts that were difficult for you and why
+    - The parts you think you could do better and how
+    - What you would do if you could go a step further on this game
+    - Any comment you may have
