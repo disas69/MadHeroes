@@ -1,6 +1,8 @@
 ﻿using Framework.Tools.Gameplay;
 using Framework.Tools.Singleton;
+using Framework.UI;
 using MadHeroes.Data;
+using Source.UI.Pages;
 using UnityEngine;
 
 namespace MadHeroes.Game
@@ -45,19 +47,19 @@ namespace MadHeroes.Game
         private void ActivateStartState()
         {
             GameSession.Initialize(GameData.LevelIndex);
-            // NavigationManager.Instance.OpenScreen<StartPage>();
+            NavigationManager.Instance.OpenScreen<StartPage>();
         }
 
         private void ActivatePlayState()
         {
             GameSession.Play();
-            // NavigationManager.Instance.OpenScreen<PlayPage>();
+            NavigationManager.Instance.OpenScreen<PlayPage>();
         }
 
         private void ActivateGameOverState()
         {
             GameSession.Stop();
-            // NavigationManager.Instance.OpenScreen<SuccessPage>();
+            NavigationManager.Instance.OpenScreen<SuccessPage>();
         }
 
         private void OnApplicationPause(bool pause)

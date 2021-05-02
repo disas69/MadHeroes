@@ -11,17 +11,17 @@ namespace MadHeroes.Level
     {
         private static SceneInstance _scene;
 
-        public static int Level { get; private set; } = -1;
+        public static bool IsLoaded { get; private set; }
 
         public static void Load(LevelConfiguration configuration, Action<LevelController> callback)
         {
-            Level = configuration.Level;
-
             if (configuration.Scene != null)
             {
                 void OnSceneLoaded(AsyncOperationHandle<SceneInstance> handle)
                 {
                     _scene = handle.Result;
+                    
+                    IsLoaded = true;
                     handle.Completed -= OnSceneLoaded;
 
                     var roots = _scene.Scene.GetRootGameObjects();
@@ -47,11 +47,11 @@ namespace MadHeroes.Level
 
         public static void Unload(Action callback)
         {
-            if (Level != -1)
+            if (IsLoaded)
             {
                 void OnSceneUnloaded(AsyncOperationHandle<SceneInstance> handle)
                 {
-                    Level = -1;
+                    IsLoaded = false;
                     handle.Completed -= OnSceneUnloaded;
                     callback?.Invoke();
                 }

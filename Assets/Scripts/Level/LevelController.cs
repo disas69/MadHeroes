@@ -1,6 +1,7 @@
 ﻿using System;
-using Framework.Spawn;
+using Cinemachine;
 using Framework.Tools.Misc;
+using MadHeroes.Players;
 using UnityEngine;
 
 namespace MadHeroes.Level
@@ -9,36 +10,34 @@ namespace MadHeroes.Level
     {
         private LevelConfiguration _configuration;
 
-        public Transform Start;
-        public Transform Finish;
-        public Transform Elements;
+        [SerializeField] private CinemachineVirtualCamera _battleCamera;
 
-        public int Level { get; private set; }
+        public Player[] Players { get; private set; }
+        public CinemachineVirtualCamera BattleCamera => _battleCamera;
 
-        public virtual void Initialize(int level, LevelConfiguration configuration)
+        private void Awake()
+        {
+            _battleCamera.Priority = 0;
+            _battleCamera.enabled = false;
+        }
+
+        public virtual void Initialize(LevelConfiguration configuration)
         {
             _configuration = configuration;
-            Level = level;
+
+            Players = GetComponentsInChildren<Player>();
+            for (var i = 0; i < Players.Length; i++)
+            {
+                Players[i].Initialize();
+            }
         }
 
         private void Update()
         {
-            if (!IsActive)
-            {
-                return;
-            }
         }
 
         public virtual void Dispose()
         {
-            Activate(false);
-
-            var spawnables = Elements.GetComponentsInChildren<SpawnableObject>(true);
-
-            for (var i = 0; i < spawnables.Length; i++)
-            {
-                spawnables[i].Deactivate();
-            }
         }
     }
 }

@@ -24,19 +24,21 @@ namespace MadHeroes.Camera
 
         public void Initialize()
         {
-            SwitchCamera(_initialCamera);
+            SwitchView(_initialCamera);
         }
 
-        public void SwitchCamera(CinemachineVirtualCamera virtualCamera)
+        public void SwitchView(CinemachineVirtualCamera virtualCamera)
         {
             if (_virtualCamera != null)
             {
-                _virtualCamera.Priority = 1;
+                _virtualCamera.Priority = 0;
+                _virtualCamera.enabled = false;
                 ResetState();
             }
 
             _virtualCamera = virtualCamera;
-            _virtualCamera.Priority = 0;
+            _virtualCamera.Priority = 1;
+            _virtualCamera.enabled = true;
         }
 
         public void SetFOV(int fov)

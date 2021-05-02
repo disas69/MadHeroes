@@ -2,6 +2,10 @@
 {
     public class AttackAction : Action
     {
+        public AttackAction(Hero hero) : base(hero)
+        {
+        }
+
         public override void Start()
         {
             throw new System.NotImplementedException();

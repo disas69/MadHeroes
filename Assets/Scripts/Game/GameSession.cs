@@ -4,7 +4,9 @@ using MadHeroes.Data;
 using MadHeroes.Level;
 using MadHeroes.Camera;
 using Framework.Effects;
+using MadHeroes.Game.Loop;
 using MadHeroes.Configuration;
+using MadHeroes.Game.Loop.Phases;
 
 namespace MadHeroes.Game
 {
@@ -14,6 +16,7 @@ namespace MadHeroes.Game
 
         public CameraController Camera => _camera;
         public LevelController Level { get; private set; }
+        public GameLoop GameLoop { get; private set; }
 
         public void Initialize(int level)
         {
@@ -25,24 +28,54 @@ namespace MadHeroes.Game
                 LevelLoader.Load(configuration, levelController =>
                 {
                     Level = levelController;
-                    Level.Initialize(level, configuration);
-                    Debug.Log($"Level {Level.Level} loaded");
+                    Level.Initialize(configuration);
+
+                    GameLoop = new GameLoop(Level.Players);
+                    GameLoop.PhaseActivated += OnPhaseActivated;
                 });
             }
         }
 
         public void Play()
         {
+            GameLoop.Activate(true);
         }
 
         public void Stop()
         {
+            GameLoop.Activate(false);
             GameData.IncreaseLevel();
             GameData.Save();
         }
 
+        private void Update()
+        {
+            if (GameLoop != null && GameLoop.IsActive)
+            {
+                GameLoop.Update();
+            }
+        }
+
+        private void OnPhaseActivated(Phase phase)
+        {
+            if (phase is AssignActionPhase assignActionPhase)
+            {
+                Camera.SwitchView(assignActionPhase.GetActivePlayer().Camera);
+            }
+            else if (phase is MovePhase)
+            {
+                Camera.SwitchView(Level.BattleCamera);
+            }
+        }
+
         public void Dispose()
         {
+            if (GameLoop != null)
+            {
+                GameLoop.PhaseActivated -= OnPhaseActivated;
+                GameLoop.Dispose();
+            }
+
             VisualEffectsManager.Clear();
             LevelLoader.Unload(() =>
             {

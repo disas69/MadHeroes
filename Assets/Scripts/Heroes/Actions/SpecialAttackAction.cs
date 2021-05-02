@@ -2,6 +2,10 @@
 {
     public class SpecialAttackAction : Action
     {
+        public SpecialAttackAction(Hero hero) : base(hero)
+        {
+        }
+
         public override void Start()
         {
             throw new System.NotImplementedException();

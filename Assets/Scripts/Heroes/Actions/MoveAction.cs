@@ -2,6 +2,10 @@
 {
     public class MoveAction : Action
     {
+        public MoveAction(Hero hero) : base(hero)
+        {
+        }
+
         public override void Start()
         {
             throw new System.NotImplementedException();
