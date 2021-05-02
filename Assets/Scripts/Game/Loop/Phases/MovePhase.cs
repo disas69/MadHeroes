@@ -1,10 +1,14 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
+using MadHeroes.Heroes.Actions;
 using MadHeroes.Players;
 
 namespace MadHeroes.Game.Loop.Phases
 {
-    public class MovePhase : Phase
+    public class MovePhase : ActionPhase
     {
+        public override Type[] ActionTypes => new[] {typeof(MoveAction)};
+
         public MovePhase(Player[] players) : base(players)
         {
         }

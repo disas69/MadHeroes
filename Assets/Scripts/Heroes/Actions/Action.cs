@@ -4,6 +4,8 @@ namespace MadHeroes.Heroes.Actions
     {
         protected Hero Hero;
 
+        public bool IsActive { get; }
+
         protected Action(Hero hero)
         {
             Hero = hero;

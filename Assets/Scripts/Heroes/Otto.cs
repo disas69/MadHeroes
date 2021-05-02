@@ -4,9 +4,9 @@ namespace MadHeroes.Heroes
 {
     public class Otto : Hero
     {
-        protected override void InitializeActions()
+        protected override void SetupActions()
         {
-            base.InitializeActions();
+            base.SetupActions();
             Actions.Add(new MeleeAttackAction(this));
             Actions.Add(new PullAction(this));
         }

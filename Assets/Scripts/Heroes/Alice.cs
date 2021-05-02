@@ -4,9 +4,9 @@ namespace MadHeroes.Heroes
 {
     public class Alice : Hero
     {
-        protected override void InitializeActions()
+        protected override void SetupActions()
         {
-            base.InitializeActions();
+            base.SetupActions();
             Actions.Add(new RangedAttackAction(this));
             Actions.Add(new HealAction(this));
         }

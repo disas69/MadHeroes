@@ -12,21 +12,21 @@ namespace MadHeroes.Heroes
         private Rigidbody _rigidbody;
         private HeroAnimator _heroAnimator;
 
-        protected List<Action> Actions;
-
         [SerializeField] private float _health = 100f;
 
         public float Health => _health;
+        public List<Action> Actions { get; private set; }
+        public Action CurrentAction { get; private set; }
 
         protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _heroAnimator = GetComponent<HeroAnimator>();
 
-            InitializeActions();
+            SetupActions();
         }
 
-        protected virtual void InitializeActions()
+        protected virtual void SetupActions()
         {
             Actions = new List<Action>
             {
@@ -34,14 +34,27 @@ namespace MadHeroes.Heroes
             };
         }
 
-        public List<Action> GetActions()
+        public void AssignAction(Action action)
         {
-            return Actions;
+            CurrentAction = action;
+        }
+
+        public void Execute()
+        {
+            CurrentAction.Start();
         }
 
         public void Destroy()
         {
 
+        }
+
+        private void Update()
+        {
+            if (CurrentAction != null && CurrentAction.IsActive)
+            {
+                CurrentAction.Update();
+            }
         }
     }
 }
