@@ -2,6 +2,7 @@
 using Framework.Tools.Singleton;
 using Framework.Attributes;
 using MadHeroes.Data;
+using MadHeroes.Heroes;
 using MadHeroes.Level;
 using UnityEngine;
 
@@ -14,9 +15,22 @@ namespace MadHeroes.Configuration
         public const string AssetPath = "GameConfiguration";
 
         public GameSettings Game;
+        public List<HeroConfiguration> Heroes;
         public List<LevelConfiguration> Levels;
 
         public static GameSettings GameSettings => Instance.Game;
+
+        public static HeroConfiguration GetHeroConfiguration(string name)
+        {
+            var heroConfiguration = Instance.Heroes.Find(h => h.Name == name);
+            if (heroConfiguration != null)
+            {
+                return heroConfiguration;
+            }
+
+            Debug.LogError($"Failed to find Hero Configuration with name: {name}");
+            return null;
+        }
 
         public static LevelConfiguration GetLevelConfiguration(int level)
         {

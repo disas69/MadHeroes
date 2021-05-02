@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 725627318}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
@@ -3464,6 +3464,14 @@ PrefabInstance:
       value: Player 2
       objectReference: {fileID: 0}
     - target: {fileID: 154238228748465767, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
+      propertyPath: _heroEntries.Array.data[0].Hero
+      value: Clay
+      objectReference: {fileID: 0}
+    - target: {fileID: 154238228748465767, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
+      propertyPath: _heroEntries.Array.data[1].Hero
+      value: Gretchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 154238228748465767, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
       propertyPath: _heroEntries.Array.data[0].Rotation.y
       value: 180
       objectReference: {fileID: 0}
@@ -3785,6 +3793,7 @@ GameObject:
   - component: {fileID: 1994574692}
   - component: {fileID: 1994574691}
   - component: {fileID: 1994574690}
+  - component: {fileID: 1994574693}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -3867,6 +3876,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1994574693
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994574688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.5
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2024403744
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,6 +4283,14 @@ PrefabInstance:
     - target: {fileID: 154238228748465766, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 154238228748465767, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
+      propertyPath: _heroEntries.Array.data[0].Hero
+      value: Otto
+      objectReference: {fileID: 0}
+    - target: {fileID: 154238228748465767, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}
+      propertyPath: _heroEntries.Array.data[1].Hero
+      value: Alice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278c8b341c95f6648a1188295eab37f5, type: 3}

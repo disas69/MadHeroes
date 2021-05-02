@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Framework.Editor;
-using Framework.Editor.GUIUtilities;
+﻿using Framework.Editor.GUIUtilities;
 using MadHeroes.Configuration;
+using Framework.Editor;
 using MadHeroes.Data;
 using MadHeroes.Level;
 using UnityEditor;
@@ -66,6 +65,7 @@ namespace Source.Editor
         {
             EditorGUILayout.LabelField("Settings", HeaderStyle);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("Game"), true);
+            ListPropertyDrawer.OnGUI(serializedObject.FindProperty("Heroes"));
         }
 
         private void DrawLevels()

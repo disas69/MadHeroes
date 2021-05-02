@@ -12,6 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c0577ec1b9f3741825721a8615ddaa, type: 3}
   m_Name: GameConfiguration
   m_EditorClassIdentifier: 
+  Heroes:
+  - Name: Otto
+    Prefab:
+      m_AssetGUID: d56ff459adf81d047bca1aa2741dbbc2
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Icon:
+      m_AssetGUID: fe189c0006577944eaa12ec9bdff3f0f
+      m_SubObjectName: portrait_otto
+      m_SubObjectType: 
+    Health: 150
+  - Name: Clay
+    Prefab:
+      m_AssetGUID: b134b8e8724cec945b804ac33086d771
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Icon:
+      m_AssetGUID: fe189c0006577944eaa12ec9bdff3f0f
+      m_SubObjectName: portrait_clay
+      m_SubObjectType: 
+    Health: 100
+  - Name: Alice
+    Prefab:
+      m_AssetGUID: f81a42d24238b3141b9a340739f7e47f
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Icon:
+      m_AssetGUID: fe189c0006577944eaa12ec9bdff3f0f
+      m_SubObjectName: portrait_alice
+      m_SubObjectType: 
+    Health: 150
+  - Name: Gretchen
+    Prefab:
+      m_AssetGUID: aed5af9faa13eac408987f57b4c249b9
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Icon:
+      m_AssetGUID: fe189c0006577944eaa12ec9bdff3f0f
+      m_SubObjectName: portrait_gretchen
+      m_SubObjectType: 
+    Health: 100
   Levels:
   - Level: 1
     Scene:

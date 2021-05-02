@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6980a2089c0c7624390e988734c434d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inTransition: 1
+  _inTransition: 0
   _outTransition: 0
   _transitionSpeed: 1
   _model: {fileID: 0}

@@ -3,7 +3,6 @@ using UnityEngine;
 using MadHeroes.Data;
 using MadHeroes.Level;
 using MadHeroes.Camera;
-using Framework.Effects;
 using MadHeroes.Game.Loop;
 using MadHeroes.Configuration;
 using MadHeroes.Game.Loop.Phases;
@@ -76,7 +75,6 @@ namespace MadHeroes.Game
                 GameLoop.Dispose();
             }
 
-            VisualEffectsManager.Clear();
             LevelLoader.Unload(() =>
             {
                 Resources.UnloadUnusedAssets();

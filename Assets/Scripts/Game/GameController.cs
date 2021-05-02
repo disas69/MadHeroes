@@ -46,20 +46,20 @@ namespace MadHeroes.Game
 
         private void ActivateStartState()
         {
-            GameSession.Initialize(GameData.LevelIndex);
             NavigationManager.Instance.OpenScreen<StartPage>();
+            GameSession.Initialize(GameData.LevelIndex);
         }
 
         private void ActivatePlayState()
         {
-            GameSession.Play();
             NavigationManager.Instance.OpenScreen<PlayPage>();
+            GameSession.Play();
         }
 
         private void ActivateGameOverState()
         {
-            GameSession.Stop();
             NavigationManager.Instance.OpenScreen<SuccessPage>();
+            GameSession.Stop();
         }
 
         private void OnApplicationPause(bool pause)

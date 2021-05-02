@@ -3,6 +3,7 @@ using Cinemachine;
 using UnityEngine;
 using MadHeroes.Heroes;
 using System.Collections.Generic;
+using MadHeroes.Configuration;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -12,7 +13,7 @@ namespace MadHeroes.Players
     [Serializable]
     public class HeroEntry
     {
-        public AssetReference Prefab;
+        public string Hero;
         public Vector3 Position;
         public Vector3 Rotation;
     }
@@ -25,8 +26,9 @@ namespace MadHeroes.Players
         [SerializeField] private List<HeroEntry> _heroEntries;
         [SerializeField] private CinemachineVirtualCamera _camera;
 
-        public CinemachineVirtualCamera Camera => _camera;
+        public List<Hero> Heroes => _heroes;
         public bool IsDefeated => _heroes.Count == 0;
+        public CinemachineVirtualCamera Camera => _camera;
 
         private void Awake()
         {
@@ -63,16 +65,26 @@ namespace MadHeroes.Players
 
         private void LoadHero(HeroEntry entry, Action<Hero> callback)
         {
-            var asyncOperation = Addressables.InstantiateAsync(entry.Prefab.RuntimeKey, new InstantiationParameters(transform.position + entry.Position, Quaternion.Euler(entry.Rotation), transform));
-
-            void OnHeroLoaded(AsyncOperationHandle<GameObject> handle)
+            var configuration = GameConfiguration.GetHeroConfiguration(entry.Hero);
+            if (configuration != null)
             {
-                _handles.Add(handle);
-                handle.Completed -= OnHeroLoaded;
-                callback?.Invoke(handle.Result.GetComponent<Hero>());
-            }
+                var asyncOperation = Addressables.InstantiateAsync(configuration.Prefab.RuntimeKey, new InstantiationParameters(transform.position + entry.Position, Quaternion.Euler(entry.Rotation), transform));
 
-            asyncOperation.Completed += OnHeroLoaded;
+                void OnHeroLoaded(AsyncOperationHandle<GameObject> handle)
+                {
+                    _handles.Add(handle);
+                    handle.Completed -= OnHeroLoaded;
+
+                    var hero = handle.Result.GetComponent<Hero>();
+                    if (hero != null)
+                    {
+                        hero.Initialize(configuration);
+                        callback?.Invoke(hero);
+                    }
+                }
+
+                asyncOperation.Completed += OnHeroLoaded;
+            }
         }
 
         public void Dispose()
