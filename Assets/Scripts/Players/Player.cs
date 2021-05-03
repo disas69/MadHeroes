@@ -30,6 +30,8 @@ namespace MadHeroes.Players
         public bool IsDefeated => _heroes.Count == 0;
         public CinemachineVirtualCamera Camera => _camera;
 
+        public event Action AssignedActions;
+
         private void Awake()
         {
             _camera.Priority = 0;
@@ -48,6 +50,11 @@ namespace MadHeroes.Players
                     _heroes.Add(hero);
                 });
             }
+        }
+
+        public void SetReady()
+        {
+            AssignedActions?.Invoke();
         }
 
         public void RemoveDeadHeroes()

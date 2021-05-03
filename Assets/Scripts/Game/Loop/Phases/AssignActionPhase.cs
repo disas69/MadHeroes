@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using MadHeroes.Players;
+﻿using MadHeroes.Players;
 
 namespace MadHeroes.Game.Loop.Phases
 {
@@ -7,23 +6,43 @@ namespace MadHeroes.Game.Loop.Phases
     {
         public AssignActionPhase(Player[] players) : base(players)
         {
+            for (var i = 0; i < Players.Length; i++)
+            {
+                Players[i].AssignedActions += OnAssignedActions;
+            }
         }
 
         public override void Activate()
         {
             base.Activate();
-            ActivateNextPlayer();
-            FireActivated();
+            TrySelectNextPlayer();
+        }
 
-            DOTween.Sequence()
-                .AppendInterval(5f)
-                .AppendCallback(() =>
-                {
-                    ActivateNextPlayer();
-                    FireActivated();
-                })
-                .AppendInterval(5f)
-                .AppendCallback(Complete);
+        private void OnAssignedActions()
+        {
+            TrySelectNextPlayer();
+        }
+
+        private void TrySelectNextPlayer()
+        {
+            if (ActivateNextPlayer())
+            {
+                FireActivated();
+            }
+            else
+            {
+                Complete();
+            }
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            for (var i = 0; i < Players.Length; i++)
+            {
+                Players[i].AssignedActions -= OnAssignedActions;
+            }
         }
     }
 }

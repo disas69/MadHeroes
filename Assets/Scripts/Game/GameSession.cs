@@ -75,6 +75,7 @@ namespace MadHeroes.Game
                 GameLoop.Dispose();
             }
 
+            Level.Dispose();
             LevelLoader.Unload(() =>
             {
                 Resources.UnloadUnusedAssets();

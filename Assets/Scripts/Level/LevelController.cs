@@ -38,6 +38,10 @@ namespace MadHeroes.Level
 
         public virtual void Dispose()
         {
+            for (var i = 0; i < Players.Length; i++)
+            {
+                Players[i].Dispose();
+            }
         }
     }
 }

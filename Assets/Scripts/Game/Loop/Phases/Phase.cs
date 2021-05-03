@@ -3,7 +3,7 @@ using MadHeroes.Players;
 
 namespace MadHeroes.Game.Loop.Phases
 {
-    public abstract class Phase
+    public abstract class Phase : IDisposable
     {
         protected Player[] Players;
         protected Player ActivePlayer;
@@ -61,6 +61,10 @@ namespace MadHeroes.Game.Loop.Phases
         protected void FireActivated()
         {
             Activated?.Invoke(this);
+        }
+
+        public virtual void Dispose()
+        {
         }
     }
 }

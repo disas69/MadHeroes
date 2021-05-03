@@ -43,7 +43,15 @@ namespace Source.UI.Pages
                 for (var i = 0; i < _playerViews.Count; i++)
                 {
                     var playerView = _playerViews[i];
-                    playerView.gameObject.SetActive(playerView.Player == activePlayer);
+                    if (playerView.Player == activePlayer)
+                    {
+                        playerView.gameObject.SetActive(true);
+                        playerView.ActivateActionsSelection(true);
+                    }
+                    else
+                    {
+                        playerView.gameObject.SetActive(false);
+                    }
                 }
             }
             else if (phase is MovePhase)
@@ -51,6 +59,7 @@ namespace Source.UI.Pages
                 for (var i = 0; i < _playerViews.Count; i++)
                 {
                     _playerViews[i].gameObject.SetActive(true);
+                    _playerViews[i].ActivateActionsSelection(false); ;
                 }
             }
         }

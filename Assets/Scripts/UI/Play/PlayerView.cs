@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using MadHeroes.Players;
 using System.Collections.Generic;
 
@@ -11,6 +12,8 @@ namespace MadHeroes.UI.Play
         private List<HeroView> _heroViews;
 
         [SerializeField] private HeroView _heroView;
+        [SerializeField] private Button _readyButton;
+
         public Player Player => _player;
 
         public void Initialize(Player player)
@@ -25,6 +28,42 @@ namespace MadHeroes.UI.Play
 
                 _heroViews.Add(heroView);
             }
+
+            _readyButton.onClick.AddListener(player.SetReady);
+        }
+
+        public void ActivateActionsSelection(bool isActive)
+        {
+            for (var i = 0; i < _heroViews.Count; i++)
+            {
+                _heroViews[i].ActivateActionSelection(isActive);
+            }
+
+            _readyButton.gameObject.SetActive(isActive);
+
+            if (isActive)
+            {
+                UpdateReadyButtonState();
+            }
+        }
+
+        private void Update()
+        {
+            UpdateReadyButtonState();
+        }
+
+        private void UpdateReadyButtonState()
+        {
+            for (var i = 0; i < _heroViews.Count; i++)
+            {
+                if (!_heroViews[i].IsActionAssigned)
+                {
+                    _readyButton.interactable = false;
+                    return;
+                }
+            }
+
+            _readyButton.interactable = true;
         }
 
         public void Dispose()
@@ -34,6 +73,8 @@ namespace MadHeroes.UI.Play
                 _heroViews[i].Dispose();
                 Destroy(_heroViews[i].gameObject);
             }
+
+            _readyButton.onClick.RemoveAllListeners();
         }
     }
 }

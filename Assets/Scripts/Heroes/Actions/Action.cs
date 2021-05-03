@@ -14,5 +14,10 @@ namespace MadHeroes.Heroes.Actions
         public abstract void Start();
         public abstract void Update();
         public abstract void OnComplete();
+
+        public override string ToString()
+        {
+            return "Action";
+        }
     }
 }

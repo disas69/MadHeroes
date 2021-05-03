@@ -88,6 +88,7 @@ namespace MadHeroes.Game.Loop
             for (var i = 0; i < _phases.Count; i++)
             {
                 _phases[i].Activated -= OnPhaseActivated;
+                _phases[i].Dispose();
             }
 
             _activePhase = null;
