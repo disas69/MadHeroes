@@ -8,17 +8,12 @@
 
         public override void Start()
         {
-            throw new System.NotImplementedException();
+            base.Start();
         }
 
         public override void Update()
         {
-            throw new System.NotImplementedException();
-        }
 
-        public override void OnComplete()
-        {
-            throw new System.NotImplementedException();
         }
 
         public override string ToString()

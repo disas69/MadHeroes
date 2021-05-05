@@ -1,24 +1,47 @@
-﻿namespace MadHeroes.Heroes.Actions
+﻿using UnityEngine;
+
+namespace MadHeroes.Heroes.Actions
 {
     public class MoveAction : Action
     {
+        private float _time;
+        private bool _executed;
+
         public MoveAction(Hero hero) : base(hero)
         {
         }
 
         public override void Start()
         {
-            throw new System.NotImplementedException();
+            base.Start();
+
+            _time = Time.time;
+            _executed = false;
         }
 
         public override void Update()
         {
-            throw new System.NotImplementedException();
+            if (_executed)
+            {
+                if (!Hero.IsMoving())
+                {
+                    Complete();
+                }
+            }
+            else
+            {
+                if (Time.time - _time > 1.5f)
+                {
+                    _executed = true;
+                    Hero.Move();
+                }
+            }
         }
 
-        public override void OnComplete()
+        public override void Complete()
         {
-            throw new System.NotImplementedException();
+            base.Complete();
+            Hero.Stop();
         }
 
         public override string ToString()

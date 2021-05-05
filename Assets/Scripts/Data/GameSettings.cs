@@ -1,10 +1,12 @@
 ﻿using System;
-using UnityEngine;
+using Framework.Utils.Math;
 
 namespace MadHeroes.Data
 {
     [Serializable]
     public class GameSettings
     {
+        public float DefaultMoveVelocity;
+        public MinMaxFloatValue MoveVelocity;
     }
 }

@@ -22,6 +22,8 @@ namespace MadHeroes.Camera
         [SerializeField] private CinemachineBrain _cinemachine;
         [SerializeField] private CinemachineVirtualCamera _initialCamera;
 
+        public float Angle => _camera.transform.eulerAngles.y;
+
         public void Initialize()
         {
             SwitchView(_initialCamera);

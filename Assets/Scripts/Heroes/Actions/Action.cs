@@ -4,16 +4,24 @@ namespace MadHeroes.Heroes.Actions
     {
         protected Hero Hero;
 
-        public bool IsActive { get; }
+        public bool IsActive { get; private set; }
 
         protected Action(Hero hero)
         {
             Hero = hero;
         }
 
-        public abstract void Start();
+        public virtual void Start()
+        {
+            IsActive = true;
+        }
+
         public abstract void Update();
-        public abstract void OnComplete();
+
+        public virtual void Complete()
+        {
+            IsActive = false;
+        }
 
         public override string ToString()
         {

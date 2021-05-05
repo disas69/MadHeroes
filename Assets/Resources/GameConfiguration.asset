@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c0577ec1b9f3741825721a8615ddaa, type: 3}
   m_Name: GameConfiguration
   m_EditorClassIdentifier: 
+  Game:
+    DefaultMoveVelocity: 10
+    MoveVelocity:
+      Min: 1
+      Max: 20
   Heroes:
   - Name: Otto
     Prefab:

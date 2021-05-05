@@ -1,5 +1,4 @@
 ﻿using System;
-using DG.Tweening;
 using MadHeroes.Players;
 using MadHeroes.Heroes.Actions;
 
@@ -17,10 +16,7 @@ namespace MadHeroes.Game.Loop.Phases
         {
             base.Activate();
             FireActivated();
-
-            DOTween.Sequence()
-                .AppendInterval(5f)
-                .AppendCallback(Complete);
+            TryExecuteActions();
         }
     }
 }

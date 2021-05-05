@@ -24,5 +24,10 @@ namespace Framework.Utils.Math
         {
             return UnityEngine.Random.Range(Min, Max);
         }
+
+        public float Clamp(float value)
+        {
+            return UnityEngine.Mathf.Clamp(value, Min, Max);
+        }
     }
 }
