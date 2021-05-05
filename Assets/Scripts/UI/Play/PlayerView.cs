@@ -56,7 +56,8 @@ namespace MadHeroes.UI.Play
         {
             for (var i = 0; i < _heroViews.Count; i++)
             {
-                if (!_heroViews[i].IsActionAssigned)
+                var heroView = _heroViews[i];
+                if (heroView.gameObject.activeSelf && !heroView.IsActionAssigned)
                 {
                     _readyButton.interactable = false;
                     return;

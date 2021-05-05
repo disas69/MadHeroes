@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
 
 namespace MadHeroes.Heroes.Actions
 {
     public class MoveAction : Action
     {
-        private float _time;
-        private bool _executed;
+        private bool _isActive;
 
         public MoveAction(Hero hero) : base(hero)
         {
@@ -15,26 +14,23 @@ namespace MadHeroes.Heroes.Actions
         {
             base.Start();
 
-            _time = Time.time;
-            _executed = false;
+            _isActive = false;
+
+            DOTween.Sequence()
+                .AppendInterval(1.5f)
+                .OnComplete(() =>
+                {
+                    _isActive = true;
+                    Hero.Move();
+                })
+                .Play();
         }
 
         public override void Update()
         {
-            if (_executed)
+            if (_isActive && !Hero.IsMoving())
             {
-                if (!Hero.IsMoving())
-                {
-                    Complete();
-                }
-            }
-            else
-            {
-                if (Time.time - _time > 1.5f)
-                {
-                    _executed = true;
-                    Hero.Move();
-                }
+                Complete();
             }
         }
 

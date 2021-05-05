@@ -26,6 +26,8 @@ namespace MadHeroes.UI.Play
         {
             _hero = hero;
             _hero.HealthChanged += UpdateHealth;
+            _hero.Died += OnHeroDied;
+
             UpdateHealth(hero.Health);
 
             _portrait.enabled = false;
@@ -77,10 +79,16 @@ namespace MadHeroes.UI.Play
             _health.fillAmount = ratio;
         }
 
+        private void OnHeroDied()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void Dispose()
         {
             _hero.HealthChanged -= UpdateHealth;
             _iconHandle.Completed -= OnIconLoaded;
+            _hero.Died -= OnHeroDied;
 
             for (var i = 0; i < _actionToggles.Count; i++)
             {

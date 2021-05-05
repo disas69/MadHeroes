@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 173738841171662172}
   - component: {fileID: 4167388654187846957}
   - component: {fileID: 4093152486625026063}
+  - component: {fileID: -3934774571358199263}
   m_Layer: 6
   m_Name: Clay
   m_TagString: Untagged
@@ -216,7 +217,20 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!135 &-3934774571358199263
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618925062426203053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2105988456461015773
 GameObject:

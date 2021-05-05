@@ -10,5 +10,8 @@ namespace MadHeroes.Heroes
         public AssetReference Prefab;
         public AssetReference Icon;
         public float Health;
+        public float Damage;
+        public float EnemyRadius;
+        public float AllyRadius;
     }
 }

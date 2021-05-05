@@ -4,6 +4,7 @@ using MadHeroes.Heroes.Actions;
 using System.Collections.Generic;
 using MadHeroes.Configuration;
 using MadHeroes.Game;
+using MadHeroes.Players;
 using Action = MadHeroes.Heroes.Actions.Action;
 
 namespace MadHeroes.Heroes
@@ -14,20 +15,22 @@ namespace MadHeroes.Heroes
     [RequireComponent(typeof(HeroInputHandler))]
     public abstract class Hero : MonoBehaviour
     {
-        private float _health;
         private Rigidbody _rigidbody;
         private HeroAnimator _heroAnimator;
-        private HeroConfiguration _configuration;
         private HeroInputHandler _inputHandler;
 
-        public float Health => _health;
-        public HeroConfiguration Configuration => _configuration;
+        public bool IsAlive { get; private set; }
+        public Player Player { get; private set; }
+        public float Health { get; private set; }
+        public HeroConfiguration Configuration { get; private set; }
         public List<Action> Actions { get; private set; }
         public Action CurrentAction { get; private set; }
         public float Velocity { get; set; }
         public bool IsComplete => !IsMoving() && CurrentAction != null && !CurrentAction.IsActive;
+        public HeroAnimator Animator => _heroAnimator;
 
         public event Action<float> HealthChanged;
+        public event System.Action Died;
 
         protected virtual void Awake()
         {
@@ -46,10 +49,12 @@ namespace MadHeroes.Heroes
             };
         }
 
-        public void Initialize(HeroConfiguration configuration)
+        public void Initialize(Player player, HeroConfiguration configuration)
         {
-            _configuration = configuration;
-            _health = configuration.Health;
+            IsAlive = true;
+            Player = player;
+            Configuration = configuration;
+            Health = configuration.Health;
         }
 
         public void AssignAction(Action action)
@@ -90,10 +95,52 @@ namespace MadHeroes.Heroes
             _rigidbody.AddForce(transform.forward * Velocity, ForceMode.Impulse);
         }
 
+        public void Attack(Hero enemy)
+        {
+            if (enemy != null)
+            {
+                enemy.TakeDamage(Configuration.Damage);
+                enemy.Animator.PlayDamage();
+            }
+        }
+
         public bool IsMoving()
         {
             var velocity = _rigidbody.velocity.magnitude;
             return velocity > 0.1f;
+        }
+
+        public Hero FindClosestEnemy()
+        {
+            return FindClosestHero(Configuration.EnemyRadius, hero => hero.IsAlive && hero.Player != Player);
+        }
+
+        public Hero FindClosestAlly()
+        {
+            return FindClosestHero(Configuration.AllyRadius, hero => hero.IsAlive && hero.Player == Player);
+        }
+
+        public Hero FindClosestHero(float radius, Func<Hero, bool> searchFunc)
+        {
+            Hero closestHero = null;
+            var minDistance = float.MaxValue;
+
+            var heroes = Physics.OverlapSphere(transform.position, radius, LayerMask.GetMask("Character"));
+            for (var i = 0; i < heroes.Length; i++)
+            {
+                var hero = heroes[i].GetComponent<Hero>();
+                if (hero != null && hero != this && searchFunc.Invoke(hero))
+                {
+                    var distance = Vector3.Distance(transform.position, hero.transform.position);
+                    if (distance < minDistance)
+                    {
+                        closestHero = hero;
+                        minDistance = distance;
+                    }
+                }
+            }
+
+            return closestHero;
         }
 
         private void Update()
@@ -119,9 +166,17 @@ namespace MadHeroes.Heroes
             _rigidbody.angularVelocity = Vector3.zero;
         }
 
-        public void Destroy()
+        private void TakeDamage(float damage)
         {
+            Health = Mathf.Clamp(Health - damage, 0f, Configuration.Health);
+            HealthChanged?.Invoke(Health);
+        }
 
+        public void Die()
+        {
+            IsAlive = false;
+            Animator.PlayDeath();
+            Died?.Invoke();
         }
     }
 }

@@ -65,7 +65,7 @@ namespace MadHeroes.Players
                 if (hero.Health <= 0f)
                 {
                     _heroes.Remove(hero);
-                    hero.Destroy();
+                    hero.Die();
                 }
             }
         }
@@ -85,7 +85,7 @@ namespace MadHeroes.Players
                     var hero = handle.Result.GetComponent<Hero>();
                     if (hero != null)
                     {
-                        hero.Initialize(configuration);
+                        hero.Initialize(this, configuration);
                         callback?.Invoke(hero);
                     }
                 }

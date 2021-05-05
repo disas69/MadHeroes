@@ -11,11 +11,6 @@
             base.Start();
         }
 
-        public override void Update()
-        {
-
-        }
-
         public override string ToString()
         {
             return "Special";

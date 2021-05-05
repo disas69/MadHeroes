@@ -16,7 +16,9 @@ namespace MadHeroes.Heroes.Actions
             IsActive = true;
         }
 
-        public abstract void Update();
+        public virtual void Update()
+        {
+        }
 
         public virtual void Complete()
         {
