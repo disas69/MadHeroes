@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using MadHeroes.Configuration;
 using MadHeroes.Game;
 using MadHeroes.Players;
+using MadHeroes.Tools;
 using Action = MadHeroes.Heroes.Actions.Action;
 
 namespace MadHeroes.Heroes
@@ -19,6 +20,8 @@ namespace MadHeroes.Heroes
         private HeroAnimator _heroAnimator;
         private HeroInputHandler _inputHandler;
 
+        [SerializeField] private CircleRenderer _circle;
+
         public bool IsAlive { get; private set; }
         public Player Player { get; private set; }
         public float Health { get; private set; }
@@ -26,8 +29,8 @@ namespace MadHeroes.Heroes
         public List<Action> Actions { get; private set; }
         public Action CurrentAction { get; private set; }
         public float Velocity { get; set; }
-        public bool IsComplete => !IsMoving() && CurrentAction != null && !CurrentAction.IsActive;
         public HeroAnimator Animator => _heroAnimator;
+        public bool IsComplete => !IsMoving() && CurrentAction != null && !CurrentAction.IsActive;
 
         public event Action<float> HealthChanged;
         public event System.Action Died;
@@ -55,6 +58,8 @@ namespace MadHeroes.Heroes
             Player = player;
             Configuration = configuration;
             Health = configuration.Health;
+
+            HideRadiusCircle();
         }
 
         public void AssignAction(Action action)
@@ -70,6 +75,19 @@ namespace MadHeroes.Heroes
             {
                 _inputHandler.Activate(false);
             }
+
+            if (CurrentAction is AttackAction)
+            {
+                ShowRadiusCircle(Configuration.AttackRadius, Color.red);
+            }
+            else if (CurrentAction is SpecialAttackAction)
+            {
+                ShowRadiusCircle(Configuration.SpecialRadius, Color.blue);
+            }
+            else
+            {
+                HideRadiusCircle();
+            }
         }
 
         public void Execute()
@@ -80,6 +98,8 @@ namespace MadHeroes.Heroes
             {
                 _inputHandler.Activate(false);
             }
+
+            HideRadiusCircle();
         }
 
         public void UpdateAction()
@@ -112,12 +132,12 @@ namespace MadHeroes.Heroes
 
         public Hero FindClosestEnemy()
         {
-            return FindClosestHero(Configuration.EnemyRadius, hero => hero.IsAlive && hero.Player != Player);
+            return FindClosestHero(Configuration.AttackRadius, hero => hero.IsAlive && hero.Player != Player);
         }
 
         public Hero FindClosestAlly()
         {
-            return FindClosestHero(Configuration.AllyRadius, hero => hero.IsAlive && hero.Player == Player);
+            return FindClosestHero(Configuration.SpecialRadius, hero => hero.IsAlive && hero.Player == Player);
         }
 
         public Hero FindClosestHero(float radius, Func<Hero, bool> searchFunc)
@@ -164,6 +184,23 @@ namespace MadHeroes.Heroes
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
+        }
+
+        public void ShowRadiusCircle(float radius, Color color)
+        {
+            if (_circle != null)
+            {
+                _circle.gameObject.SetActive(true);
+                _circle.Set(radius, color);
+            }
+        }
+
+        public void HideRadiusCircle()
+        {
+            if (_circle != null)
+            {
+                _circle.gameObject.SetActive(false);
+            }
         }
 
         private void TakeDamage(float damage)

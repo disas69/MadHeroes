@@ -9,7 +9,6 @@ namespace MadHeroes.Heroes
     {
         private Hero _hero;
         private Vector2 _touchPosition;
-        private LineRenderer _pointerInstance;
 
         [SerializeField] private LineRenderer _pointer;
 
@@ -20,14 +19,14 @@ namespace MadHeroes.Heroes
         private void Awake()
         {
             _hero = GetComponent<Hero>();
-            _pointerInstance = Instantiate(_pointer, transform);
-            _pointerInstance.gameObject.SetActive(false);
+            _pointer.gameObject.SetActive(false);
+            _pointer.SetColors(Color.green, Color.green);
         }
 
         public override void Activate(bool isActive)
         {
             base.Activate(isActive);
-            _pointerInstance.gameObject.SetActive(isActive);
+            _pointer.gameObject.SetActive(isActive);
 
             if (isActive)
             {
@@ -80,8 +79,8 @@ namespace MadHeroes.Heroes
 
         private void UpdatePointer()
         {
-            _pointerInstance.SetPosition(0, _hero.transform.position);
-            _pointerInstance.SetPosition(1, _hero.transform.position + _hero.transform.forward * _hero.Velocity * 0.75f);
+            _pointer.SetPosition(0, _hero.transform.position);
+            _pointer.SetPosition(1, _hero.transform.position + _hero.transform.forward * _hero.Velocity * 0.75f);
         }
     }
 }

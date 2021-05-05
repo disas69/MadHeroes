@@ -29,8 +29,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 150
     Damage: 50
-    EnemyRadius: 3
-    AllyRadius: 3
+    AttackRadius: 3
+    SpecialRadius: 8
   - Name: Clay
     Prefab:
       m_AssetGUID: b134b8e8724cec945b804ac33086d771
@@ -42,8 +42,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 100
     Damage: 40
-    EnemyRadius: 5
-    AllyRadius: 5
+    AttackRadius: 3
+    SpecialRadius: 8
   - Name: Alice
     Prefab:
       m_AssetGUID: f81a42d24238b3141b9a340739f7e47f
@@ -55,8 +55,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 150
     Damage: 30
-    EnemyRadius: 10
-    AllyRadius: 10
+    AttackRadius: 10
+    SpecialRadius: 15
   - Name: Gretchen
     Prefab:
       m_AssetGUID: aed5af9faa13eac408987f57b4c249b9
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 100
     Damage: 50
-    EnemyRadius: 10
-    AllyRadius: 10
+    AttackRadius: 10
+    SpecialRadius: 15
   Levels:
   - Level: 1
     Scene:
