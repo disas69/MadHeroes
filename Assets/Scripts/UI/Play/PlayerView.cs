@@ -13,6 +13,7 @@ namespace MadHeroes.UI.Play
 
         [SerializeField] private HeroView _heroView;
         [SerializeField] private Button _readyButton;
+        [SerializeField] private RectTransform _content;
 
         public Player Player => _player;
 
@@ -23,7 +24,7 @@ namespace MadHeroes.UI.Play
 
             for (var i = 0; i < player.Heroes.Count; i++)
             {
-                var heroView = Instantiate(_heroView, transform);
+                var heroView = Instantiate(_heroView, _content);
                 heroView.Initialize(player.Heroes[i]);
 
                 _heroViews.Add(heroView);
