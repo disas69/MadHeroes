@@ -24,6 +24,8 @@ namespace MadHeroes.Level
                     IsLoaded = true;
                     handle.Completed -= OnSceneLoaded;
 
+                    SceneManager.SetActiveScene(_scene.Scene);
+
                     var roots = _scene.Scene.GetRootGameObjects();
                     for (var i = 0; i < roots.Length; i++)
                     {
