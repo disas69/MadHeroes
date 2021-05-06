@@ -55,8 +55,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 150
     Damage: 30
-    AttackRadius: 10
-    SpecialRadius: 15
+    AttackRadius: 8
+    SpecialRadius: 12
   - Name: Gretchen
     Prefab:
       m_AssetGUID: aed5af9faa13eac408987f57b4c249b9
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_SubObjectType: 
     Health: 100
     Damage: 50
-    AttackRadius: 10
-    SpecialRadius: 15
+    AttackRadius: 8
+    SpecialRadius: 12
   Levels:
   - Level: 1
     Scene:

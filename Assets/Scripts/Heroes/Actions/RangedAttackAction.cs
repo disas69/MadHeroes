@@ -24,13 +24,13 @@ namespace MadHeroes.Heroes.Actions
                     _projectile.gameObject.SetActive(true);
                     _projectile.transform.position = Hero.transform.position + Vector3.up;
                 })
-                .Append(_projectile.transform.DOMove(enemy != null ? enemy.transform.position + Vector3.up : Hero.transform.position + Vector3.up + Hero.transform.forward * 5f, 0.5f))
+                .Append(_projectile.transform.DOMove(enemy != null ? enemy.transform.position + Vector3.up : Hero.transform.position + Vector3.up + Hero.transform.forward * 8f, 0.5f))
                 .AppendCallback(() =>
                 {
                     _projectile.gameObject.SetActive(false);
                     Hero.Attack(enemy);
                 })
-                .AppendInterval(1f)
+                .AppendInterval(0.5f)
                 .OnComplete(Complete)
                 .Play();
         }

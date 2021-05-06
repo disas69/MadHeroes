@@ -25,7 +25,7 @@ namespace MadHeroes.Heroes.Actions
                     .AppendCallback(() => Hero.Animator.PlaySpecial())
                     .AppendInterval(0.5f)
                     .Append(_target.transform.DOMove(Hero.transform.position + Hero.transform.forward * 2f, 1f))
-                    .AppendInterval(1f)
+                    .AppendInterval(0.5f)
                     .OnComplete(Complete)
                     .Play();
             }
@@ -33,7 +33,7 @@ namespace MadHeroes.Heroes.Actions
             {
                 DOTween.Sequence()
                     .AppendCallback(() => Hero.Animator.PlaySpecial())
-                    .AppendInterval(1.5f)
+                    .AppendInterval(1f)
                     .OnComplete(Complete)
                     .Play();
             }

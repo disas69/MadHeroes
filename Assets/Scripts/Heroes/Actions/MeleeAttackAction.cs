@@ -14,7 +14,7 @@ namespace MadHeroes.Heroes.Actions
                 .AppendCallback(() => Hero.Animator.PlayMeleeAttack())
                 .AppendInterval(0.5f)
                 .AppendCallback(() => Hero.Attack(enemy))
-                .AppendInterval(1f)
+                .AppendInterval(0.5f)
                 .OnComplete(Complete)
                 .Play();
         }

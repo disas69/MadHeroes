@@ -140,7 +140,7 @@ namespace MadHeroes.Heroes
         public bool IsMoving()
         {
             var velocity = _rigidbody.velocity.magnitude;
-            return velocity > 0.1f;
+            return velocity > 0.2f;
         }
 
         public Hero FindClosestEnemy(float radius)

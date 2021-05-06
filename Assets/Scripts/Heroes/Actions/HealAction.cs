@@ -22,7 +22,7 @@ namespace MadHeroes.Heroes.Actions
                 .AppendCallback(() => Hero.Animator.PlaySpecial())
                 .AppendInterval(0.5f)
                 .AppendCallback(() => Hero.Heal(hero, _healAmount))
-                .AppendInterval(1f)
+                .AppendInterval(0.5f)
                 .OnComplete(Complete)
                 .Play();
         }

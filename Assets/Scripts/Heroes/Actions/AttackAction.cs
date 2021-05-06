@@ -19,7 +19,7 @@ namespace MadHeroes.Heroes.Actions
                 var direction = (enemy.transform.position - Hero.transform.position).normalized;
 
                 DOTween.Sequence()
-                    .Append(Hero.transform.DORotateQuaternion(Quaternion.LookRotation(direction), 1f))
+                    .Append(Hero.transform.DORotateQuaternion(Quaternion.LookRotation(direction), 0.5f))
                     .AppendCallback(() => Attack(enemy))
                     .Play();
             }

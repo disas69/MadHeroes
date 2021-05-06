@@ -24,7 +24,7 @@ namespace MadHeroes.Heroes.Actions
                         hero.AddForce(direction * _pushForce);
                     }
                 })
-                .AppendInterval(1f)
+                .AppendInterval(0.5f)
                 .OnComplete(Complete)
                 .Play();
         }

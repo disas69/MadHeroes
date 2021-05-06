@@ -17,7 +17,7 @@ namespace MadHeroes.Heroes.Actions
             _isActive = false;
 
             DOTween.Sequence()
-                .AppendInterval(1.5f)
+                .AppendInterval(1f)
                 .OnComplete(() =>
                 {
                     _isActive = true;
