@@ -8,7 +8,6 @@ namespace MadHeroes.Game.Loop
 {
     public class GameLoop : IDisposable
     {
-        private Player[] _players;
         private List<Phase> _phases;
         private Phase _activePhase;
 
@@ -28,7 +27,6 @@ namespace MadHeroes.Game.Loop
 
         public GameLoop(Player[] players)
         {
-            _players = players;
             _phases = new List<Phase>
             {
                 new AssignActionPhase(players),
