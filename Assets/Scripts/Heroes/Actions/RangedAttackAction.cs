@@ -14,10 +14,8 @@ namespace MadHeroes.Heroes.Actions
             _projectile.gameObject.SetActive(false);
         }
 
-        public override void Attack(Hero enemy)
+        protected override void Attack(Hero enemy)
         {
-            base.Attack(enemy);
-
             DOTween.Sequence()
                 .AppendCallback(() => Hero.Animator.PlayRangedAttack())
                 .AppendInterval(0.25f)

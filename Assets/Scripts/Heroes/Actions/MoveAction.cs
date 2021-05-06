@@ -34,7 +34,7 @@ namespace MadHeroes.Heroes.Actions
             }
         }
 
-        public override void Complete()
+        protected override void Complete()
         {
             base.Complete();
             Hero.Stop();

@@ -1,4 +1,5 @@
-﻿using MadHeroes.Players;
+﻿using DG.Tweening;
+using MadHeroes.Players;
 
 namespace MadHeroes.Game.Loop.Phases
 {
@@ -25,14 +26,20 @@ namespace MadHeroes.Game.Loop.Phases
                 }
             }
 
-            if (players == 1)
-            {
-                GameController.Instance.SetState(GameState.GameOver);
-            }
-            else
-            {
-                Complete();
-            }
+            DOTween.Sequence()
+                .AppendInterval(1f)
+                .OnComplete(() =>
+                {
+                    if (players == 1)
+                    {
+                        GameController.Instance.SetState(GameState.GameOver);
+                    }
+                    else
+                    {
+                        Complete();
+                    }
+                })
+                .Play();
         }
     }
 }

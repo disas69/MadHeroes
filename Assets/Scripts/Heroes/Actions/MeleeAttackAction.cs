@@ -8,10 +8,8 @@ namespace MadHeroes.Heroes.Actions
         {
         }
 
-        public override void Attack(Hero enemy)
+        protected override void Attack(Hero enemy)
         {
-            base.Attack(enemy);
-
             DOTween.Sequence()
                 .AppendCallback(() => Hero.Animator.PlayMeleeAttack())
                 .AppendInterval(0.5f)

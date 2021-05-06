@@ -2,7 +2,7 @@ namespace MadHeroes.Heroes.Actions
 {
     public abstract class Action
     {
-        protected Hero Hero;
+        protected readonly Hero Hero;
 
         public bool IsActive { get; private set; }
 
@@ -20,7 +20,7 @@ namespace MadHeroes.Heroes.Actions
         {
         }
 
-        public virtual void Complete()
+        protected virtual void Complete()
         {
             IsActive = false;
         }

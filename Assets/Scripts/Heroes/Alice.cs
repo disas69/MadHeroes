@@ -7,12 +7,13 @@ namespace MadHeroes.Heroes
     public class Alice : Hero
     {
         [SerializeField] private Projectile _projectile;
+        [SerializeField] private float _healAmount;
 
         protected override void SetupActions()
         {
             base.SetupActions();
             Actions.Add(new RangedAttackAction(this, _projectile));
-            Actions.Add(new HealAction(this));
+            Actions.Add(new HealAction(this, _healAmount));
         }
     }
 }

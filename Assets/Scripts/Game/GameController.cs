@@ -58,7 +58,7 @@ namespace MadHeroes.Game
 
         private void ActivateGameOverState()
         {
-            NavigationManager.Instance.OpenScreen<SuccessPage>();
+            NavigationManager.Instance.OpenScreen<GameOverPage>();
             GameSession.Stop();
         }
 

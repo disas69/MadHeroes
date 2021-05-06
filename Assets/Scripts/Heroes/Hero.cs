@@ -112,7 +112,12 @@ namespace MadHeroes.Heroes
 
         public void Move()
         {
-            _rigidbody.AddForce(transform.forward * Velocity, ForceMode.Impulse);
+            AddForce(transform.forward * Velocity);
+        }
+
+        public void AddForce(Vector3 force)
+        {
+            _rigidbody.AddForce(force, ForceMode.Impulse);
         }
 
         public void Attack(Hero enemy)
@@ -124,20 +129,28 @@ namespace MadHeroes.Heroes
             }
         }
 
+        public void Heal(Hero hero, float healAmount)
+        {
+            if (hero != null)
+            {
+                hero.RestoreHealth(healAmount);
+            }
+        }
+
         public bool IsMoving()
         {
             var velocity = _rigidbody.velocity.magnitude;
             return velocity > 0.1f;
         }
 
-        public Hero FindClosestEnemy()
+        public Hero FindClosestEnemy(float radius)
         {
-            return FindClosestHero(Configuration.AttackRadius, hero => hero.IsAlive && hero.Player != Player);
+            return FindClosestHero(radius, hero => hero.IsAlive && hero.Player != Player);
         }
 
-        public Hero FindClosestAlly()
+        public Hero FindClosestAlly(float radius)
         {
-            return FindClosestHero(Configuration.SpecialRadius, hero => hero.IsAlive && hero.Player == Player);
+            return FindClosestHero(radius, hero => hero.IsAlive && hero.Player == Player);
         }
 
         public Hero FindClosestHero(float radius, Func<Hero, bool> searchFunc)
@@ -206,6 +219,12 @@ namespace MadHeroes.Heroes
         private void TakeDamage(float damage)
         {
             Health = Mathf.Clamp(Health - damage, 0f, Configuration.Health);
+            HealthChanged?.Invoke(Health);
+        }
+
+        private void RestoreHealth(float healAmount)
+        {
+            Health = Mathf.Clamp(Health + healAmount, 0f, Configuration.Health);
             HealthChanged?.Invoke(Health);
         }
 

@@ -1,22 +1,12 @@
-﻿using System;
-using MadHeroes.Players;
+﻿using MadHeroes.Players;
 using MadHeroes.Heroes.Actions;
 
 namespace MadHeroes.Game.Loop.Phases
 {
     public class MovePhase : ActionPhase
     {
-        public override Type[] ActionTypes => new[] {typeof(MoveAction)};
-
-        public MovePhase(Player[] players) : base(players)
+        public MovePhase(Player[] players) : base(players, new[] {typeof(MoveAction)})
         {
-        }
-
-        public override void Activate()
-        {
-            base.Activate();
-            FireActivated();
-            TryExecuteActions();
         }
     }
 }

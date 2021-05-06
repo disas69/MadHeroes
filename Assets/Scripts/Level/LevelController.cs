@@ -32,10 +32,6 @@ namespace MadHeroes.Level
             }
         }
 
-        private void Update()
-        {
-        }
-
         public virtual void Dispose()
         {
             for (var i = 0; i < Players.Length; i++)

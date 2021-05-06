@@ -86,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _circle: {fileID: 1953161664285451264}
   _projectile: {fileID: 786124933062818077, guid: ededce5374e2c47448ed4faad864cbaf, type: 3}
+  _healAmount: 50
 --- !u!114 &-9071266139551556585
 MonoBehaviour:
   m_ObjectHideFlags: 0

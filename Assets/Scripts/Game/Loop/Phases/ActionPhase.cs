@@ -6,10 +6,18 @@ namespace MadHeroes.Game.Loop.Phases
 {
     public abstract class ActionPhase : Phase
     {
-        public abstract Type[] ActionTypes { get; }
+        private Type[] ActionTypes { get; }
 
-        protected ActionPhase(Player[] players) : base(players)
+        protected ActionPhase(Player[] players, Type[] actionTypes) : base(players)
         {
+            ActionTypes = actionTypes;
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            FireActivated();
+            TryExecuteActions();
         }
 
         public override void Update()
@@ -36,7 +44,7 @@ namespace MadHeroes.Game.Loop.Phases
             }
         }
 
-        protected void TryExecuteActions()
+        private void TryExecuteActions()
         {
             for (var i = 0; i < Players.Length; i++)
             {
@@ -51,7 +59,7 @@ namespace MadHeroes.Game.Loop.Phases
             }
         }
 
-        public bool IsAssignableAction(Action action)
+        private bool IsAssignableAction(Action action)
         {
             var type = action.GetType();
 

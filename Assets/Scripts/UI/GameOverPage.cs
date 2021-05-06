@@ -1,15 +1,15 @@
-﻿using DG.Tweening;
-using Framework.UI.Structure.Base.Model;
+﻿using Framework.UI.Structure.Base.Model;
 using Framework.UI.Structure.Base.View;
 using JetBrains.Annotations;
 using MadHeroes.Data;
 using MadHeroes.Game;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 
 namespace Source.UI.Pages
 {
-    public class SuccessPage : Page<PageModel>
+    public class GameOverPage : Page<PageModel>
     {
         [SerializeField] private TextMeshProUGUI _level;
         [SerializeField] private float _fadeInTime;

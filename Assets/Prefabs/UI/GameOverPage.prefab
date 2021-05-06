@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2003082541007983451}
   - component: {fileID: 8806050810714503033}
   m_Layer: 0
-  m_Name: SuccessPage
+  m_Name: GameOverPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c063aab9db9c04047ae2248746dfcb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inTransition: 1
-  _outTransition: 1
+  _inTransition: 0
+  _outTransition: 0
   _transitionSpeed: 1
   _model: {fileID: 0}
   _level: {fileID: 0}

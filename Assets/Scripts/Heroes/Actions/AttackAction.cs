@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace MadHeroes.Heroes.Actions
 {
-    public class AttackAction : Action
+    public abstract class AttackAction : Action
     {
-        public AttackAction(Hero hero) : base(hero)
+        protected AttackAction(Hero hero) : base(hero)
         {
         }
 
@@ -13,7 +13,7 @@ namespace MadHeroes.Heroes.Actions
         {
             base.Start();
 
-            var enemy = Hero.FindClosestEnemy();
+            var enemy = Hero.FindClosestEnemy(Hero.Configuration.AttackRadius);
             if (enemy != null)
             {
                 var direction = (enemy.transform.position - Hero.transform.position).normalized;
@@ -29,9 +29,7 @@ namespace MadHeroes.Heroes.Actions
             }
         }
 
-        public virtual void Attack(Hero enemy)
-        {
-        }
+        protected abstract void Attack(Hero enemy);
 
         public override string ToString()
         {
