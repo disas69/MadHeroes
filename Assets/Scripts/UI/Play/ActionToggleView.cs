@@ -10,6 +10,7 @@ namespace MadHeroes.UI.Play
     {
         private Toggle _toggle;
         private Action _action;
+        private bool _isOn;
 
         [SerializeField] private TextMeshProUGUI _text;
 
@@ -31,6 +32,15 @@ namespace MadHeroes.UI.Play
             {
                 ToggleOn?.Invoke(_toggle, _action);
             }
+            else
+            {
+                if (_isOn)
+                {
+                    _toggle.isOn = true;
+                }
+            }
+
+            _isOn = _toggle.isOn;
         }
     }
 }
