@@ -48,7 +48,19 @@ MonoBehaviour:
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 497bc75c48d5d474bb15705b9a89a449
-    m_Address: CombatScene_Dungeon
+    m_Address: Dungeon 2x2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 66d403f927ba6d846a8f6522581ffcfe
+    m_Address: Dungeon 1x1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 932d6b4b0bb96c14e8964b630e24b292
+    m_Address: Dungeon 3x3
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
